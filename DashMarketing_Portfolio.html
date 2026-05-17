@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dash Marketing — Performance Marketing Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Cairo+Play:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #050810;
+  --bg2:       #080d1a;
+  --card:      #0c1428;
+  --card2:     #0f1e38;
+  --cyan:      #00d4ff;
+  --orange:    #ff6b35;
+  --gold:      #ffc837;
+  --green:     #00e676;
+  --white:     #ffffff;
+  --off:       #c8deff;
+  --muted:     #4a6080;
+  --border:    rgba(0,212,255,0.12);
+  --border2:   rgba(255,107,53,0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CURSOR ── */
+.cursor {
+  width: 10px; height: 10px;
+  background: var(--cyan);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transition: transform 0.1s ease;
+  mix-blend-mode: screen;
+}
+.cursor-ring {
+  width: 40px; height: 40px;
+  border: 1px solid rgba(0,212,255,0.4);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transition: all 0.15s ease;
+  transform: translate(-50%,-50%);
+}
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+  opacity: 0.35;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.5rem 4rem;
+  background: rgba(5,8,16,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Cairo', sans-serif;
+  font-weight: 800; font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+.nav-logo span { color: var(--orange); }
+
+.nav-links {
+  display: flex; gap: 2.5rem; list-style: none;
+}
+.nav-links a {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.7rem; letter-spacing: 0.04em;
+  color: var(--muted); text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 1px; background: var(--cyan);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.nav-links a:hover { color: var(--cyan); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 8rem 4rem 4rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+  max-width: 1300px; margin: 0 auto; width: 100%;
+  position: relative; z-index: 2;
+}
+
+/* Animated gradient bg */
+.hero-glow {
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  animation: glow-pulse 6s ease-in-out infinite;
+}
+.hero-glow2 {
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,107,53,0.05) 0%, transparent 70%);
+  bottom: -50px; left: 0;
+  animation: glow-pulse 8s ease-in-out infinite reverse;
+}
+@keyframes glow-pulse {
+  0%,100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+.hero-eyebrow {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.7rem; letter-spacing: 0.05em;
+  color: var(--cyan); text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-eyebrow::before {
+  content: ''; width: 32px; height: 1px;
+  background: var(--cyan);
+}
+
+.hero-name {
+  font-family: 'Cairo', sans-serif;
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  font-weight: 800; line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
+.hero-name .accent { color: var(--cyan); }
+.hero-name .line2 {
+  display: block;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+  color: transparent;
+}
+
+.hero-title {
+  font-size: 1rem; color: var(--orange);
+  font-weight: 500; letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-bio {
+  font-size: 1rem; line-height: 1.75;
+  color: var(--off); font-weight: 300;
+  max-width: 480px; margin-bottom: 2.5rem;
+}
+
+.hero-cta {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+}
+
+.btn-primary {
+  padding: 0.85rem 2rem;
+  background: var(--cyan);
+  color: var(--bg);
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700; font-size: 0.85rem;
+  letter-spacing: 0.02em; text-transform: uppercase;
+  border: none; cursor: none;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  transition: all 0.3s ease;
+  text-decoration: none; display: inline-block;
+}
+.btn-primary:hover {
+  background: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(0,212,255,0.3);
+}
+
+.btn-ghost {
+  padding: 0.85rem 2rem;
+  background: transparent;
+  color: var(--off);
+  font-family: 'Cairo', sans-serif;
+  font-weight: 600; font-size: 0.85rem;
+  letter-spacing: 0.02em; text-transform: uppercase;
+  border: 1px solid var(--border);
+  cursor: none;
+  transition: all 0.3s;
+  text-decoration: none; display: inline-block;
+}
+.btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+
+/* Hero right: stats panel */
+.hero-stats-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 2.5rem;
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+.hero-stats-panel::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--orange));
+}
+
+.panel-label {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.65rem; letter-spacing: 0.05em;
+  color: var(--muted); text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.stat-item { position: relative; }
+
+.stat-val {
+  font-family: 'Cairo', sans-serif;
+  font-size: 2rem; font-weight: 800;
+  line-height: 1; margin-bottom: 0.4rem;
+}
+.stat-val.cyan { color: var(--cyan); }
+.stat-val.orange { color: var(--orange); }
+.stat-val.gold { color: var(--gold); }
+.stat-val.green { color: var(--green); }
+
+.stat-label {
+  font-size: 0.75rem; color: var(--muted);
+  line-height: 1.4;
+}
+
+.stat-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5rem 0;
+}
+
+.verified-badge {
+  display: flex; align-items: center; gap: 0.75rem;
+  background: rgba(0,230,118,0.05);
+  border: 1px solid rgba(0,230,118,0.2);
+  padding: 0.75rem 1rem;
+  margin-top: 1.5rem;
+}
+.verified-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%; background: var(--green);
+  animation: blink 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.verified-text {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.68rem; color: var(--green);
+  letter-spacing: 0.05em;
+}
+
+/* ── SECTION WRAPPER ── */
+section { position: relative; z-index: 1; }
+.section-inner {
+  max-width: 1300px; margin: 0 auto;
+  padding: 6rem 4rem;
+}
+
+.section-header { margin-bottom: 4rem; }
+.section-tag {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.65rem; letter-spacing: 0.06em;
+  color: var(--cyan); text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-tag::before {
+  content: '//'; color: var(--orange);
+  font-weight: 500;
+}
+.section-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800; line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.section-title em {
+  font-style: normal;
+  color: var(--cyan);
+}
+
+/* ── SKILLS ── */
+#skills { background: var(--bg2); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.skill-card {
+  background: var(--card);
+  padding: 2rem;
+  transition: background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.skill-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--cyan);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform 0.4s ease;
+}
+.skill-card:hover::before { transform: scaleY(1); }
+.skill-card:hover { background: var(--card2); }
+
+.skill-icon {
+  font-size: 1.8rem; margin-bottom: 1rem;
+  display: block;
+}
+.skill-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.95rem; font-weight: 700;
+  color: var(--cyan); margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+.skill-list { list-style: none; }
+.skill-list li {
+  font-size: 0.82rem; color: var(--off);
+  padding: 0.3rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  display: flex; align-items: center; gap: 0.5rem;
+  font-weight: 300;
+}
+.skill-list li::before {
+  content: '→';
+  color: var(--orange); font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+/* ── CASE STUDIES ── */
+#cases { background: var(--bg); }
+
+.cases-stack { display: flex; flex-direction: column; gap: 4px; }
+
+.case-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.case-card:hover { border-color: rgba(0,212,255,0.3); }
+
+.case-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center; gap: 2rem;
+  padding: 2rem 2.5rem;
+  cursor: pointer;
+  position: relative;
+}
+.case-header::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1px; background: var(--border);
+}
+
+.case-num {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.7rem; color: var(--muted);
+  letter-spacing: 0.03em;
+}
+.case-title-wrap {}
+.case-industry {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.65rem; letter-spacing: 0.05em;
+  color: var(--orange); text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.case-name {
+  font-family: 'Cairo', sans-serif;
+  font-size: 1.4rem; font-weight: 700;
+  color: var(--white);
+}
+.case-headline {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.7rem; color: var(--muted);
+  text-align: right; letter-spacing: 0.05em;
+}
+
+.case-body {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 0;
+}
+
+.case-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-right: 1px solid var(--border);
+}
+.kpi-box {
+  padding: 1.75rem 2rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.kpi-box:nth-child(even) { border-right: none; }
+.kpi-box:nth-last-child(-n+2) { border-bottom: none; }
+
+.kpi-val {
+  font-family: 'Cairo', sans-serif;
+  font-size: 1.7rem; font-weight: 800;
+  line-height: 1; margin-bottom: 0.35rem;
+}
+.kpi-key { font-size: 0.72rem; color: var(--muted); font-weight: 300; }
+
+.case-strategy {
+  padding: 2rem 2.5rem;
+}
+.strategy-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.65rem; letter-spacing: 0.05em;
+  color: var(--cyan); text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.strategy-list { list-style: none; }
+.strategy-list li {
+  font-size: 0.8rem; color: var(--off);
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  display: flex; gap: 0.6rem;
+  font-weight: 300; line-height: 1.5;
+}
+.strategy-list li::before {
+  content: '▸'; color: var(--orange);
+  font-size: 0.7rem; margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+/* ── PROOF BAR ── */
+#proof {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.proof-inner {
+  max-width: 1300px; margin: 0 auto;
+  padding: 5rem 4rem;
+}
+
+.proof-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 800; text-align: center;
+  margin-bottom: 3rem;
+}
+.proof-title span { color: var(--green); }
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.proof-item {
+  background: var(--card);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.proof-item::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--orange));
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+.proof-item:hover::before { transform: scaleX(1); }
+
+.proof-val {
+  font-family: 'Cairo', sans-serif;
+  font-size: 2.4rem; font-weight: 800;
+  line-height: 1; margin-bottom: 0.5rem;
+}
+.proof-sublabel {
+  font-size: 0.75rem; color: var(--muted);
+  line-height: 1.4;
+}
+
+.proof-verified {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem;
+  background: rgba(0,230,118,0.04);
+  border: 1px solid rgba(0,230,118,0.15);
+  padding: 1rem 2rem;
+  max-width: 600px; margin: 0 auto;
+}
+.proof-verified-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%; background: var(--green);
+  animation: blink 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.proof-verified-text {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.72rem; color: var(--green);
+  text-align: center; line-height: 1.5;
+}
+
+/* ── TECH STACK ── */
+#tech { background: var(--bg); }
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.tech-col-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.65rem; letter-spacing: 0.05em;
+  color: var(--cyan); text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.cert-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.cert-item {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: padding-left 0.3s;
+}
+.cert-item:hover { padding-left: 0.5rem; }
+.cert-check {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: rgba(0,230,118,0.1);
+  border: 1px solid rgba(0,230,118,0.3);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.6rem; color: var(--green);
+}
+.cert-name { font-size: 0.85rem; color: var(--off); font-weight: 300; }
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+.tool-chip {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.7rem; color: var(--off);
+  letter-spacing: 0.05em;
+  transition: all 0.3s;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.tool-chip:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(0,212,255,0.04);
+}
+.tool-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+}
+.contact-inner {
+  max-width: 1300px; margin: 0 auto;
+  padding: 6rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: start;
+}
+.contact-left {}
+.contact-big {
+  font-family: 'Cairo', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800; line-height: 0.95;
+  letter-spacing: -0.03em; margin-bottom: 1.5rem;
+}
+.contact-big .hollow {
+  -webkit-text-stroke: 1px rgba(255,255,255,0.25);
+  color: transparent; display: block;
+}
+.contact-big .filled { color: var(--cyan); display: block; }
+.contact-sub {
+  font-size: 1rem; color: var(--muted);
+  line-height: 1.7; font-weight: 300;
+  margin-bottom: 2.5rem; max-width: 380px;
+}
+
+.contact-right {
+  display: flex; flex-direction: column; gap: 1px;
+}
+.contact-link {
+  display: flex; align-items: center; gap: 1.5rem;
+  padding: 1.5rem 1.75rem;
+  background: var(--card);
+  border-left: 2px solid transparent;
+  text-decoration: none;
+  transition: all 0.3s;
+  group: true;
+}
+.contact-link:hover {
+  background: var(--card2);
+  border-left-color: var(--cyan);
+  transform: translateX(4px);
+}
+.contact-link-icon {
+  font-size: 1.3rem; flex-shrink: 0;
+}
+.contact-link-label {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.62rem; letter-spacing: 0.04em;
+  color: var(--muted); text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.contact-link-val {
+  font-size: 0.9rem; color: var(--white);
+  font-weight: 400;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 2rem 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-brand {
+  font-family: 'Cairo', sans-serif;
+  font-weight: 800; font-size: 0.85rem;
+  color: var(--muted); letter-spacing: 0.03em;
+}
+.footer-brand span { color: var(--cyan); }
+.footer-copy {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.62rem; color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+/* ── ANIMATIONS ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero-grid, .tech-grid, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .section-inner { padding: 4rem 1.5rem; }
+  .proof-grid { grid-template-columns: repeat(2,1fr); }
+  .skills-grid { grid-template-columns: 1fr; }
+  .case-body { grid-template-columns: 1fr; }
+  .case-kpis { border-right: none; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-logo">Dash<span>.</span>Marketing</div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#cases">Case Studies</a></li>
+    <li><a href="#proof">Results</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-grid">
+
+    <!-- Left -->
+    <div>
+      <div class="hero-eyebrow fade-up">Performance Marketing Agency — Cairo, Egypt</div>
+      <h1 class="hero-name fade-up" style="animation-delay:0.1s">
+        Dash
+        <span class="accent"> Marketing</span>
+      </h1>
+      <p class="hero-title fade-up" style="animation-delay:0.2s">Media Buying & Performance Marketing Agency</p>
+      <p class="hero-bio fade-up" style="animation-delay:0.3s">
+      We build high-volume, profitable advertising systems that scale. 
+        Over 15 Million EGP in ad budgets managed across Meta and TikTok — 
+        with 39,507 verified orders to prove it.
+      </p>
+      <div class="hero-cta fade-up" style="animation-delay:0.4s">
+        <a href="#cases" class="btn-primary">View Case Studies</a>
+        <a href="#contact" class="btn-ghost">Get In Touch</a>
+      </div>
+    </div>
+
+    <!-- Right: Stats Panel -->
+    <div class="hero-stats-panel fade-up" style="animation-delay:0.5s">
+      <p class="panel-label">// Performance Overview</p>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-val cyan">39,507</div>
+          <div class="stat-label">Verified Orders<br>EasyOrders Platform</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val orange">15M+</div>
+          <div class="stat-label">EGP Ad Budget<br>Managed Total</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val gold">289M+</div>
+          <div class="stat-label">Ad Impressions<br>Delivered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val green">9.06x</div>
+          <div class="stat-label">Peak ROAS<br>Achieved</div>
+        </div>
+      </div>
+      <hr class="stat-divider">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-val" style="color:var(--orange);font-size:1.5rem">6.62 EGP</div>
+          <div class="stat-label">Lowest WhatsApp CPA</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val" style="color:var(--cyan);font-size:1.5rem">30.5M</div>
+          <div class="stat-label">Unique Users Reached</div>
+        </div>
+      </div>
+      <div class="verified-badge">
+        <div class="verified-dot"></div>
+        <div class="verified-text">Orders verified via EasyOrders — tamper-proof platform data</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SKILLS ═══════════════════ -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <div class="section-tag">Core Competencies</div>
+      <h2 class="section-title">Skills That Drive <em>Results</em> at Scale</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card fade-up">
+        <span class="skill-icon">🎯</span>
+        <div class="skill-title">Campaign Architecture</div>
+        <ul class="skill-list">
+          <li>CBO & ABO Campaign Structures</li>
+          <li>Broad Scaling & LLA Audiences</li>
+          <li>UGC-Driven Acquisition Funnels</li>
+          <li>Retention & Loyalty Campaigns</li>
+        </ul>
+      </div>
+      <div class="skill-card fade-up" style="animation-delay:0.1s">
+        <span class="skill-icon">📊</span>
+        <div class="skill-title">Analytics & Tracking</div>
+        <ul class="skill-list">
+          <li>Looker Studio Live Dashboards</li>
+          <li>GA4 + UTM Tracking Setup</li>
+          <li>Supermetrics Data Integration</li>
+          <li>Real-Time Performance Monitoring</li>
+        </ul>
+      </div>
+      <div class="skill-card fade-up" style="animation-delay:0.2s">
+        <span class="skill-icon">📘</span>
+        <div class="skill-title">Meta Ads Mastery</div>
+        <ul class="skill-list">
+          <li>Facebook & Instagram Ads</li>
+          <li>Advantage+ Shopping Campaigns</li>
+          <li>Dynamic Retargeting & DPAs</li>
+          <li>WhatsApp Conversion Campaigns</li>
+        </ul>
+      </div>
+      <div class="skill-card fade-up" style="animation-delay:0.1s">
+        <span class="skill-icon">🎵</span>
+        <div class="skill-title">TikTok Ads Mastery</div>
+        <ul class="skill-list">
+          <li>TikTok for Business Campaigns</li>
+          <li>Spark Ads & UGC Integration</li>
+          <li>In-Feed & TopView Strategies</li>
+          <li>TikTok Pixel & Event Tracking</li>
+        </ul>
+      </div>
+      <div class="skill-card fade-up" style="animation-delay:0.2s">
+        <span class="skill-icon">💡</span>
+        <div class="skill-title">Growth Strategy</div>
+        <ul class="skill-list">
+          <li>E-commerce Offer Engineering</li>
+          <li>Seasonal Campaign Planning</li>
+          <li>Budget Scaling Frameworks</li>
+          <li>Multi-Brand Portfolio Management</li>
+        </ul>
+      </div>
+      <div class="skill-card fade-up" style="animation-delay:0.3s">
+        <span class="skill-icon">🔬</span>
+        <div class="skill-title">Optimization Science</div>
+        <ul class="skill-list">
+          <li>A/B Testing Frameworks</li>
+          <li>Creative Performance Analysis</li>
+          <li>Audience Segmentation Logic</li>
+          <li>ROAS & CPA Optimization</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CASE STUDIES ═══════════════════ -->
+<section id="cases">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <div class="section-tag">Case Studies</div>
+      <h2 class="section-title">Real Campaigns. <em>Real Numbers.</em></h2>
+    </div>
+
+    <div class="cases-stack">
+
+      <!-- Case 1: Publishing -->
+      <div class="case-card fade-up">
+        <div class="case-header">
+          <div class="case-num">01</div>
+          <div class="case-title-wrap">
+            <div class="case-industry">Publishing & Books</div>
+            <div class="case-name">Mass Volume Scaling — Net Profit Focus</div>
+          </div>
+          <div class="case-headline">Meta Ads · Sep 2024 – Mar 2026</div>
+        </div>
+        <div class="case-body">
+          <div class="case-kpis">
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--green)">6.53M</div>
+              <div class="kpi-key">EGP Total Revenue</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--gold)">2.06M</div>
+              <div class="kpi-key">EGP Net Profit</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--cyan)">5.63%</div>
+              <div class="kpi-key">E-com Conversion Rate</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--orange)">~3.7x</div>
+              <div class="kpi-key">Average ROAS</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--white);font-size:1.3rem">105–118</div>
+              <div class="kpi-key">EGP Peak CPA</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--white);font-size:1.3rem">12,990+</div>
+              <div class="kpi-key">Total Orders Generated</div>
+            </div>
+          </div>
+          <div class="case-strategy">
+            <div class="strategy-title">// Scaling Playbook</div>
+            <ul class="strategy-list">
+              <li>Interest-based audiences: readers, self-development, parenting & Islamic content</li>
+              <li>Video-first creative: book preview Reels as primary acquisition format</li>
+              <li>3-tier funnel: TOF Cold → MOF Engaged → BOF Cart Abandoners</li>
+              <li>Looker Studio dashboard: live revenue vs. ad spend tracking</li>
+              <li>Aggressive CBO scaling after CPA stabilized at target range</li>
+              <li>A/B testing offers: free shipping, bundle discounts, urgency copy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 2: F&B -->
+      <div class="case-card fade-up" style="animation-delay:0.1s">
+        <div class="case-header">
+          <div class="case-num">02</div>
+          <div class="case-title-wrap">
+            <div class="case-industry">Food & Beverage — Dates Brand</div>
+            <div class="case-name">Hyper-Efficient Acquisition — 10.9M EGP Budget</div>
+          </div>
+          <div class="case-headline">Meta Ads · 754 Campaigns Active</div>
+        </div>
+        <div class="case-body">
+          <div class="case-kpis">
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--orange);font-size:1.4rem">10.99M</div>
+              <div class="kpi-key">EGP Budget Managed</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--green)">6.62</div>
+              <div class="kpi-key">EGP WhatsApp CPA</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--cyan)">289M+</div>
+              <div class="kpi-key">Total Impressions</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--gold)">30.5M</div>
+              <div class="kpi-key">Unique Users Reached</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--white);font-size:1.3rem">754</div>
+              <div class="kpi-key">Campaigns Managed</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--white);font-size:1.3rem">Highest</div>
+              <div class="kpi-key">Volume — Messaging Conv.</div>
+            </div>
+          </div>
+          <div class="case-strategy">
+            <div class="strategy-title">// Acquisition Engine</div>
+            <ul class="strategy-list">
+              <li>WhatsApp-first conversion funnel for direct sales channel</li>
+              <li>Prospecting campaigns targeting food & gifting audiences at scale</li>
+              <li>Seasonal surge strategy: Ramadan, Eid & corporate gifting peaks</li>
+              <li>Incremental bidding strategy to maximize reach at lowest CPA</li>
+              <li>Largest single-account budget managed across entire career</li>
+              <li>Ongoing live campaigns with real-time budget optimization</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 3: Footwear -->
+      <div class="case-card fade-up" style="animation-delay:0.2s">
+        <div class="case-header">
+          <div class="case-num">03</div>
+          <div class="case-title-wrap">
+            <div class="case-industry">Footwear — Multi-Brand</div>
+            <div class="case-name">Peak ROAS 9.06x — High-Efficiency Scaling</div>
+          </div>
+          <div class="case-headline">Meta Ads · Step Up, Adidas, YSL, Olivia</div>
+        </div>
+        <div class="case-body">
+          <div class="case-kpis">
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--cyan)">9.06x</div>
+              <div class="kpi-key">Peak ROAS Achieved</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--green);font-size:1.35rem">1.83M</div>
+              <div class="kpi-key">EGP Sales (201K Spend)</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--gold)">43.21</div>
+              <div class="kpi-key">EGP Lowest CPA</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--orange)">59.99</div>
+              <div class="kpi-key">EGP Top Model CPA</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--white);font-size:1.3rem">148</div>
+              <div class="kpi-key">Active Campaigns</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" style="color:var(--white);font-size:1.3rem">9.06</div>
+              <div class="kpi-key">Avg. ROAS — Best Acct</div>
+            </div>
+          </div>
+          <div class="case-strategy">
+            <div class="strategy-title">// Multi-Brand Playbook</div>
+            <ul class="strategy-list">
+              <li>Advantage+ Shopping Campaigns for automated catalogue scaling</li>
+              <li>CBO with Broad + LLA 1-3% run parallel to Advantage+</li>
+              <li>Product-level ROAS tracking: cut losers, scale winners</li>
+              <li>Retargeting flows for cart abandoners with urgency discounts</li>
+              <li>Scaled from 300 EGP/day to 30,000 EGP/day on top campaigns</li>
+              <li>Multi-brand account management across 4 distinct shoe brands</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PROOF ═══════════════════ -->
+<section id="proof">
+  <div class="proof-inner">
+    <h2 class="proof-title fade-up">Numbers That <span>Speak for Themselves</span></h2>
+    <div class="proof-grid">
+      <div class="proof-item fade-up">
+        <div class="proof-val" style="color:var(--green)">39,507</div>
+        <div class="proof-sublabel">Verified Orders<br>EasyOrders Platform</div>
+      </div>
+      <div class="proof-item fade-up" style="animation-delay:0.1s">
+        <div class="proof-val" style="color:var(--gold)">15M+</div>
+        <div class="proof-sublabel">EGP Total Ad Budget<br>Meta + TikTok Combined</div>
+      </div>
+      <div class="proof-item fade-up" style="animation-delay:0.2s">
+        <div class="proof-val" style="color:var(--cyan)">289M</div>
+        <div class="proof-sublabel">Total Impressions<br>Delivered to Audiences</div>
+      </div>
+      <div class="proof-item fade-up" style="animation-delay:0.3s">
+        <div class="proof-val" style="color:var(--orange)">30.5M</div>
+        <div class="proof-sublabel">Unique Users<br>Reached Across Campaigns</div>
+      </div>
+    </div>
+    <div class="proof-verified fade-up">
+      <div class="proof-verified-dot"></div>
+      <div class="proof-verified-text">
+        All 39,507 orders are independently verified via EasyOrders platform — immutable, tamper-proof records
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TECH STACK ═══════════════════ -->
+<section id="tech">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <div class="section-tag">Knowledge Base</div>
+      <h2 class="section-title">Certifications & <em>Tech Stack</em></h2>
+    </div>
+    <div class="tech-grid">
+      <div class="fade-up">
+        <div class="tech-col-title">// Certifications & Training</div>
+        <ul class="cert-list">
+          <li class="cert-item"><div class="cert-check">✓</div><div class="cert-name">Meta Blueprint Certification</div></li>
+          <li class="cert-item"><div class="cert-check">✓</div><div class="cert-name">Advanced TikTok Ads Training</div></li>
+          <li class="cert-item"><div class="cert-check">✓</div><div class="cert-name">Mindshift Advanced Media Buying</div></li>
+          <li class="cert-item"><div class="cert-check">✓</div><div class="cert-name">Advanced Facebook Ads — M. Roni</div></li>
+          <li class="cert-item"><div class="cert-check">✓</div><div class="cert-name">Advanced Facebook Ads — Samer Mahfouz</div></li>
+          <li class="cert-item"><div class="cert-check">✓</div><div class="cert-name">Advanced Facebook Ads — Mahmoud Omar</div></li>
+          <li class="cert-item"><div class="cert-check">✓</div><div class="cert-name">Advanced Facebook Ads — Al-Banna</div></li>
+          <li class="cert-item"><div class="cert-check">✓</div><div class="cert-name">Data Analysis & Campaign Management</div></li>
+          <li class="cert-item"><div class="cert-check">✓</div><div class="cert-name">E-commerce Offer Strategy — Hisham Saad</div></li>
+          <li class="cert-item"><div class="cert-check">✓</div><div class="cert-name">Productivity & Time Management Systems</div></li>
+        </ul>
+      </div>
+      <div class="fade-up" style="animation-delay:0.15s">
+        <div class="tech-col-title">// Tools & Platforms</div>
+        <div class="tool-grid">
+          <div class="tool-chip"><div class="tool-dot" style="background:var(--cyan)"></div>Meta Ads Manager</div>
+          <div class="tool-chip"><div class="tool-dot" style="background:#ff0050"></div>TikTok Ads Manager</div>
+          <div class="tool-chip"><div class="tool-dot" style="background:#4285f4"></div>Looker Studio</div>
+          <div class="tool-chip"><div class="tool-dot" style="background:#e37400"></div>Google Analytics 4</div>
+          <div class="tool-chip"><div class="tool-dot" style="background:var(--cyan)"></div>Meta Pixel + CAPI</div>
+          <div class="tool-chip"><div class="tool-dot" style="background:#69c9d0"></div>TikTok Pixel</div>
+          <div class="tool-chip"><div class="tool-dot" style="background:#00b0ff"></div>Supermetrics</div>
+          <div class="tool-chip"><div class="tool-dot" style="background:#34a853"></div>Google Sheets</div>
+          <div class="tool-chip"><div class="tool-dot" style="background:#7b2fbe"></div>EasyOrders CRM</div>
+          <div class="tool-chip"><div class="tool-dot" style="background:var(--orange)"></div>UTM Tracking</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left fade-up">
+      <div class="contact-big">
+        <span class="hollow">Let's Build</span>
+        <span class="filled">Something</span>
+        <span class="hollow">Profitable.</span>
+      </div>
+      <p class="contact-sub">
+        Ready to scale your brand with a data-driven advertising system? 
+        We turn ad budgets into measurable profit — at any scale.
+      </p>
+      <div class="verified-badge" style="max-width:360px">
+        <div class="verified-dot"></div>
+        <div class="verified-text">39,507 verified orders · 15M+ EGP managed</div>
+      </div>
+    </div>
+    <div class="contact-right fade-up" style="animation-delay:0.2s">
+      <a href="tel:+201020103934" class="contact-link">
+        <div class="contact-link-icon">📱</div>
+        <div>
+          <div class="contact-link-label">WhatsApp / Phone</div>
+          <div class="contact-link-val">+20 1020 103 934</div>
+        </div>
+      </a>
+      <a href="mailto:abdelrahmankhaledselim08@gmail.com" class="contact-link">
+        <div class="contact-link-icon">📧</div>
+        <div>
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-val">abdelrahmankhaledselim08@gmail.com</div>
+        </div>
+      </a>
+      <a href="#" class="contact-link">
+        <div class="contact-link-icon">📘</div>
+        <div>
+          <div class="contact-link-label">Facebook</div>
+          <div class="contact-link-val">Dash Marketing — Facebook Page</div>
+        </div>
+      </a>
+      <a href="#" class="contact-link">
+        <div class="contact-link-icon">📍</div>
+        <div>
+          <div class="contact-link-label">Location</div>
+          <div class="contact-link-val">Cairo, Maadi — Egypt</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Dash<span>.</span>Marketing — Performance Marketing Agency</div>
+  <div class="footer-copy">© 2026 · Media Buying & Performance Marketing — Cairo, Egypt</div>
+</footer>
+
+<script>
+// ── Cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
+});
+
+function animateRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// Scale cursor on hover
+document.querySelectorAll('a, button, .skill-card, .case-card, .proof-item').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform += ' scale(2.5)';
+    ring.style.transform = 'translate(-50%,-50%) scale(1.5)';
+    ring.style.borderColor = 'rgba(0,212,255,0.7)';
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.style.transform = 'translate(-50%,-50%) scale(1)';
+    ring.style.borderColor = 'rgba(0,212,255,0.4)';
+  });
+});
+
+// ── Fade-up on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── Animate counting numbers
+function animateCounter(el, target, suffix='', duration=1800) {
+  let start = 0;
+  const step = timestamp => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const val = Math.floor(eased * target);
+    el.textContent = val.toLocaleString() + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// Trigger counters when proof section is visible
+const proofSection = document.getElementById('proof');
+const counterObs = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    document.querySelectorAll('.proof-val').forEach(el => {
+      const text = el.textContent.trim();
+      if (text === '39,507') animateCounter(el, 39507, '');
+      else if (text === '15M+') { el.textContent = '15M+'; }
+      else if (text === '289M') animateCounter(el, 289, 'M');
+      else if (text === '30.5M') { el.textContent = '30.5M'; }
+    });
+    counterObs.disconnect();
+  }
+}, { threshold: 0.3 });
+counterObs.observe(proofSection);
+
+// ── Smooth active nav highlight
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 200) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current
+      ? 'var(--cyan)' : '';
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
